@@ -1,0 +1,145 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+ <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<style type="text/css">
+	
+	body{
+		background-color: #fff;
+	}
+	
+	img{
+		
+		object-fit: cover;
+		align-items: center;
+		margin-top: 12px;
+	}
+	.center{
+		max-width: 100%;
+	}
+	
+	#id_body{
+
+		margin: 10px;
+	}
+	#id_user{
+
+		margin: 10px;
+	}
+	button{
+		margin: 10px;
+	}
+	@media screen and (max-width:  1200px){
+			.center{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 70%;
+		}
+	}
+
+	#id_body{
+		width:  450px;
+		height: 200px;
+	}
+	#id_user{
+		width:  450px;
+		height: 50px;
+	}
+	#id_email{
+		width:  450px;
+		height: 50px;
+		margin-left: 10px;
+	}
+	.seg{
+		width: 600px;
+	}
+	.f2{
+		color: white;
+	}
+	
+</style>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<img src="{{posts.thumbnail.url}}" class="center">
+
+	<h1 style="margin-left: 18px">{{posts.headline}}</h1>
+
+	
+
+<h5 style="margin-left: 18px; margin-top: 20px">{{posts.sub_headline}}</h5>
+<div class="body-wrapper">
+
+<p style="margin-left: 30px; margin-top: 20px">{{posts.body|safe}}</p>
+
+
+<form action="" method="POST" >
+	{% csrf_token %}
+	<input type="hidden" name="post-id" value="{{posts.id}}">
+	<div class="ui inverted segment seg">
+		<h2 class="f2">Please say something about this post</h2>
+  <div class="ui inverted form">
+  	{{c_form.user}}
+  	<br>
+  	{{c_form.email}}
+  	<br>
+    {{c_form.body}}
+    <button type="submit" name="submit_c_form" class="btn btn-primary" style="margin-top: 12px; margin-bottom: 10px;">Send Comment</button>
+  </div>
+</div>
+</form>
+
+
+<h3>See what other people are telling about <b>{{posts.headline}}</b>:</h3>
+	{% if posts.comment_set.all %}
+			{% for c in posts.comment_set.all %}
+			<div class="ui segment">
+			<div class="ui comments">
+  <div class="comment">
+    <a class="avatar">
+      <img src="{% static 'images/avtar.png' %}">
+    </a>
+    <div class="content">
+      <a class="author">{{c.user}}</a>
+      <div class="text">
+        {{c.body}}
+      </div>
+      <div class="actions">
+        <a class="reply">{{c.created|timesince}}</a>
+        <a>
+          <i class="expand icon"></i>
+          Full-screen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+			{% endfor %}
+	{% else %}
+
+	<div class="ui icon message">
+  <i class="inbox icon"></i>
+  <div class="content seg">
+    <div class="header seg">
+      No Comments till now..
+    </div>
+    <p>If this was helpful to you, please appreciate us!</p>
+  </div>
+</div>
+
+	{% endif %}
+
+
+
+
+
+
+{% endblock content %}

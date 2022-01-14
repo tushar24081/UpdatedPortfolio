@@ -1,0 +1,44 @@
+{% load static %}
+<style type="text/css">
+  .img{
+    margin-left: -20px;
+  }
+</style>
+			<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="{% url 'home' %}" class="logo">
+              <img src="{% static 'images/rupani.png'%}" alt="" class="img">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="{% url 'home' %}" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="{% url 'home' %}#about">About</a></li>
+              <li class="scroll-to-section"><a href="{% url 'home' %}#subscribe">Subscribe</a></li>
+              <li class="scroll-to-section"><a href="{% url 'home' %}#portfolio">Projects</a></li>
+              <li class="scroll-to-section"><a href="{% url 'home' %}#blog">Blog</a></li>
+              <li class="scroll-to-section"><a href="{% url 'home' %}#contact">Contact</a></li> 
+
+              {% if request.user.is_authenticated %}
+              <li class="scroll-to-section"><div class="border-first-button"><a href="{% url 'posts' %}">Explore Blogs</a></div></li> 
+              {% endif %}
+
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>		
+
+
+
+
+

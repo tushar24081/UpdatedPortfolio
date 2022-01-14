@@ -1,0 +1,38 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+ <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+{% if exist %}
+<div class="ui segment">
+<div class="ui error message">
+  <i class="close icon"></i>
+  <div class="header">
+    Maybe, you have already subscribed.
+  </div>
+  <ul class="list">
+    <li>This email already exists at our Database.</li>
+    <li>Please check it out again..</li>
+  </ul>
+</div>
+</div>
+
+{% else %}
+
+<div class="ui segment">
+  <div class="ui info message">
+  <div class="header">
+    Wohhoo, Thank You for subscribing the newsletter!
+  </div>
+  <ul class="list">
+    <li>You'll get notified in your Inbox everytime I post something. </li>
+    <li>You can Unsubscribe anytime.</li>
+  </ul>
+</div>
+</div>
+
+{% endif %}
+
+
+{% endblock content %}

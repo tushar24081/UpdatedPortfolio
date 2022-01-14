@@ -1,0 +1,45 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style type="text/css">
+  .abc{
+    padding: 5px 5px 5px 5px;
+  }
+</style>
+<div class="ui segment abc">
+      <form action="{% url 'mail_send' %}" method="post" class="ui form" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  
+     <div class="field">
+      <label>Enter subject for emails:</label>
+     <input type="text" placeholder="Ex: Regarding internship program..." name="subject">
+   </div>
+  
+
+
+  
+     <div class="field">
+      <label>Enter HTML content for emails:</label>
+      <textarea name="html_content" rows="10" cols="50"></textarea>
+   </div>
+  
+
+  <button type="submit" class="ui primary button send-btn">Send Emails</button>
+
+</form>
+</div>
+
+
+{% endblock content %}
